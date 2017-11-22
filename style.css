@@ -1,0 +1,10 @@
+#myCanvas {
+    width: 1000px;
+    height: 1000px;
+    border: 1px solid gray;
+}
+
+#game_container{
+    width: 1000px;
+    height: 1000px;
+}
