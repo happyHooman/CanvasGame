@@ -1,3 +1,5 @@
+"use strict";
+
 // var playerImage = new Image();
 // playerImage.src = "img/big_girl.png";
 //
@@ -26,7 +28,7 @@ var rpg = sprite({
     numberOfFrames: 4,
     height: 54,
     ticksPerFrame: 15,
-    framesBorders: [[31,32],[63,32],[95,32],[127,32]]
+    framesBorders: [[31, 32], [63, 32], [95, 32], [127, 32]]
 });
 
 
@@ -47,7 +49,7 @@ function sprite(options) {
     that.render = function () {
         // Clear the canvas
 
-        that.context.clearRect(0, 0, that.width*2, that.height*2);
+        that.context.clearRect(0, 0, that.width * 2, that.height * 2);
 
         that.width = framesBorders[frameIndex][1];
         // console.log("frameIndex: ", frameIndex);
@@ -94,23 +96,58 @@ function gameLoop() {
 window.addEventListener("load", gameLoop);
 
 var array = [
-    [1,2,3,4],
-    [5,6,7,8],
-    [9,10,11,12],
-    [13,14,15,16]
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+    [13, 14, 15, 16]
 ];
-console.log(array);
-var rotate = [];
-for(var i = 0;i<4;i++){
-    for(var j=0;j<4;j++){
+logArray(array, "green");
+array = rotate1(array);
+logArray(array, "green");
 
+array = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+    [13, 14, 15, 16]
+];
+array = rotate2(array);
+logArray(array, "red");
+
+var swapped = [[0, 0], [0, 3], [3, 0], [3, 3]];
+
+function logArray(array, styleColor) {
+    var style = "color: " + styleColor;
+    for (var i = 0; i < 4; i++) {
+        var a = "";
+        for (var j = 0; j < 4; j++) {
+            a += array[i][j] + ", ";
+        }
+        console.log("%c%s", style, a);
     }
 }
 
-function logArray(array){
-    for(var i = 0;i<4;i++){
-        for(var j=0;j<4;j++){
-            console
+function rotate1(array) {
+    var rotate = [];
+    for (var i = 0; i < 4; i++) {
+        rotate[i] = [];
+        for (var j = 0; j < 4; j++) {
+            rotate[i][j] = array[3 - j][i];
         }
     }
+    return rotate;
+}
+
+function rotate2(array) {
+    var swap;
+    for (var i = 0; i < 2; i++) {
+        for (var j = 0; j < 2; j++) {
+            swap = array[i][j];
+            array[i][j] = array[3 - j][i];
+            array[3 - j][i] = array[3 - i][3 - j];
+            array[3 - i][3 - j] = array[j][3 - i];
+            array[j][3 - i] = swap;
+        }
+    }
+    return array;
 }
