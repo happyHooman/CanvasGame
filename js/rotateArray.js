@@ -27,8 +27,6 @@ console.log(" ");
 console.log("%cRotated array by second method", "font-weight: bold");
 logArray(array, "blue");
 
-var swapped = [[0, 0], [0, 3], [3, 0], [3, 3]];
-
 function logArray(array, styleColor) {
     var style = "color: " + styleColor;
     var n = array.length;
