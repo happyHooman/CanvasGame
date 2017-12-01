@@ -1,12 +1,16 @@
 let options = {
     context: playerCanvas.getContext("2d"),
-    imageSrc: "img/rpg_sprite.png",
+    imageSrc: "img/rpg.png",
     numberOfFrames: 4,
     ticksPerFrame: 15,
-    width: 32,
-    height: 54,
-    offY: 18,
-    framesStart: [31, 63, 95, 127]
+    width: 34,
+    height: 52,
+    offY: 0, //moveDown
+    // offY: 52,   //moveLeft
+    // offY: 104, //moveRight
+    // offY: 156, //moveUp
+
+    framesStart: [0, 34, 68, 102]
 };
 
 let rpg = new Sprite(options);

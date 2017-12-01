@@ -10,7 +10,7 @@ class Sprite {
     }
 
     render() {
-        this.options.context.clearRect(0, 0, this.options.width, this.options.height);
+        this.options.context.clearRect(0, this.positionY, this.options.width, this.options.height);
 
         this.options.context.drawImage(
             this.image,
@@ -31,6 +31,7 @@ class Sprite {
             this.tick = 0;
             this.render();
             this.frameIndex = this.frameIndex < (this.options.numberOfFrames - 1) ? (this.frameIndex + 1) : 0;
+            // this.positionY+=5;
         }
     }
 }
