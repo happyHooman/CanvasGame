@@ -7,15 +7,17 @@ class Sprite {
         this.positionY = 0;
         this.image = new Image();
         this.image.src = this.options.imageSrc;
+        // this.direction = "down";
     }
 
     render() {
         this.options.context.clearRect(0, this.positionY, this.options.width, this.options.height);
+        console.log(4);
 
         this.options.context.drawImage(
             this.image,
-            this.options.framesStart[this.frameIndex],
-            this.options.offY,
+            this.frameIndex * this.options.width,
+            0,
             this.options.width,
             this.options.height,
             this.positionX,
@@ -34,4 +36,26 @@ class Sprite {
             // this.positionY+=5;
         }
     }
+
+    moveDown(){
+        console.log("moving Down");
+        this.render();
+    }
+
+    moveLeft(){
+
+        console.log("moving Left");
+    }
+
+    moveRight(){
+        console.log("moving Right");
+
+    }
+
+    moveUp(){
+
+        console.log("moving Up");
+    }
+
+
 }

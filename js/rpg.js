@@ -5,12 +5,12 @@ let options = {
     ticksPerFrame: 15,
     width: 34,
     height: 52,
-    offY: 0, //moveDown
-    // offY: 52,   //moveLeft
-    // offY: 104, //moveRight
-    // offY: 156, //moveUp
-
-    framesStart: [0, 34, 68, 102]
+    animations: {
+        walkDown: 0,
+        walkLeft: 1,
+        walkRight: 2,
+        walkUp: 3
+    }
 };
 
 let rpg = new Sprite(options);
