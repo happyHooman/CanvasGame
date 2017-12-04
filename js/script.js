@@ -6,20 +6,20 @@ playerCanvas.height = 600;
 
 document.onkeydown = moveCharacter;
 
-function gameLoop() {
-    window.requestAnimationFrame(gameLoop);
-    // rpg.update();
-}
+// function gameLoop() {
+//     window.requestAnimationFrame(gameLoop);
+//     rpg.update();
+// }
 
-window.addEventListener("load", gameLoop);
+let l = rpg.render.bind(rpg);
+window.addEventListener("load", l);
 
-rpg.render();
 
 function moveCharacter(e) {
     switch (e.keyCode) {
         case 37:
             //left
-            e.preventDefault();
+            e.preventDefault(); //prevent page pan
             rpg.moveLeft();
             break;
         case 38:
@@ -36,6 +36,11 @@ function moveCharacter(e) {
             //down
             e.preventDefault();
             rpg.moveDown();
+            break;
+        case 32:
+            //stop
+            e.preventDefault();
+            rpg.stopMoving();
             break;
         default:
             //do nothing
