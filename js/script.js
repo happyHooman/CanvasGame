@@ -6,13 +6,9 @@ playerCanvas.height = 600;
 
 document.onkeydown = moveCharacter;
 
-// function gameLoop() {
-//     window.requestAnimationFrame(gameLoop);
-//     rpg.update();
-// }
-
-let l = rpg.render.bind(rpg);
-window.addEventListener("load", l);
+window.addEventListener("load", function () {
+    rpg.render();
+});
 
 
 function moveCharacter(e) {
