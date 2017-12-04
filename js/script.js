@@ -8,12 +8,12 @@ document.onkeydown = moveCharacter;
 
 function gameLoop() {
     window.requestAnimationFrame(gameLoop);
-    rpg.update();
+    // rpg.update();
 }
 
 window.addEventListener("load", gameLoop);
 
-// rpg.render();
+rpg.render();
 
 function moveCharacter(e) {
     switch (e.keyCode) {

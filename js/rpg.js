@@ -6,10 +6,10 @@ let options = {
     width: 34,
     height: 52,
     animations: {
-        walkDown: 0,
-        walkLeft: 1,
-        walkRight: 2,
-        walkUp: 3
+        down: 0,
+        left: 1,
+        right: 2,
+        up: 3
     }
 };
 
