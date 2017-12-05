@@ -5,40 +5,36 @@ playerCanvas.width = 600;
 playerCanvas.height = 600;
 
 document.onkeydown = moveCharacter;
+document.onkeyup = stopCharacter;
 
 window.addEventListener("load", function () {
     rpg.render();
 });
 
+function stopCharacter() {
+    rpg.stopMoving();
+}
+
 
 function moveCharacter(e) {
+    e.preventDefault();
+    if (e.repeat) {
+        return
+    }
     switch (e.keyCode) {
         case 37:
-            //left
-            e.preventDefault(); //prevent page pan
             rpg.moveLeft();
             break;
         case 38:
-            //up
-            e.preventDefault();
             rpg.moveUp();
             break;
         case 39:
-            //right
-            e.preventDefault();
             rpg.moveRight();
             break;
         case 40:
-            //down
-            e.preventDefault();
             rpg.moveDown();
             break;
-        case 32:
-            //stop
-            e.preventDefault();
-            rpg.stopMoving();
-            break;
         default:
-            //do nothing
+        //do nothing
     }
 }

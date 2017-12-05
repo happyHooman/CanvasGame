@@ -10,12 +10,13 @@ class Sprite {
         this.image.src = this.options.imageSrc;
         this.direction = this.options.animations.down;
         this.isMoving = false;
-        this.stepLength = 3;
+        this.stepLength = 5;
+        console.log(this.options.ticksPerFrame);
     }
 
     render() {
         let me = this;
-        me.context.clearRect(me.positionX - me.stepLength, me.positionY - me.stepLength, me.options.width + me.stepLength * 2, me.options.height + me.stepLength * 2);
+        me.options.context.clearRect(me.positionX - me.stepLength, me.positionY - me.stepLength, me.options.width + me.stepLength * 2, me.options.height + me.stepLength * 2);
         // console.log(me.frameIndex, me.direction);
 
         me.options.context.drawImage(
