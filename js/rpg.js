@@ -2,7 +2,7 @@ let options = {
     context: playerCanvas.getContext("2d"),
     imageSrc: "img/rpg.png",
     numberOfFrames: 4,
-    ticksPerFrame: 15,
+    ticksPerFrame: 10,
     width: 34,
     height: 52,
     animations: {

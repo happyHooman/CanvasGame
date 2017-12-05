@@ -14,7 +14,7 @@ class Sprite {
 
     render() {
         let me = this;
-        me.context.clearRect(0, me.positionY, me.options.width, me.options.height);
+        me.context.clearRect(me.positionX, me.positionY, me.options.width, me.options.height);
         // console.log(me.frameIndex, me.direction);
 
         me.options.context.drawImage(
@@ -31,12 +31,33 @@ class Sprite {
     }
 
     update() {
-        this.tick++;
-        if (this.tick > this.options.ticksPerFrame) {
-            this.tick = 0;
-            this.render();
-            this.frameIndex = this.frameIndex < (this.options.numberOfFrames - 1) ? (this.frameIndex + 1) : 0;
-            // this.positionY+=5;
+        let me = this;
+        me.tick++;
+        if (me.tick > me.options.ticksPerFrame) {
+            console.log("next frame");
+            me.tick = 0;
+            me.frameIndex = me.frameIndex < (me.options.numberOfFrames - 1) ? (me.frameIndex + 1) : 0;
+            // me.positionY -= 2;
+            switch (me.direction) {
+                case 0:
+                    me.positionY += 2;
+                    break;
+                case 3:
+                    me.positionY -= 2;
+                    break;
+                case 1:
+                    me.positionX -= 2;
+                    break;
+                case 2:
+                    me.positionX += 2;
+                    break;
+            }
+            me.render();
+        }
+        if (me.isMoving) {
+            window.requestAnimationFrame(function () {
+                me.update();
+            });
         }
     }
 
@@ -47,21 +68,8 @@ class Sprite {
         me.frameIndex = 0;
         me.isMoving = true;
 
-        neverMind();
+        me.update();
 
-        function neverMind() {
-            // console.log("I don't mind");
-            me.tick++;
-            if (me.tick > me.options.ticksPerFrame) {
-                me.tick = 0;
-                me.frameIndex = me.frameIndex < (me.options.numberOfFrames - 1) ? (me.frameIndex + 1) : 0;
-                me.render();
-                // this.positionY+=5;
-            }
-            if (me.isMoving) {
-                window.requestAnimationFrame(neverMind);
-            }
-        }
     }
 
 
@@ -72,21 +80,7 @@ class Sprite {
         me.frameIndex = 0;
         me.isMoving = true;
 
-        neverMind();
-
-        function neverMind() {
-            // console.log("I don't mind");
-            me.tick++;
-            if (me.tick > me.options.ticksPerFrame) {
-                me.tick = 0;
-                me.frameIndex = me.frameIndex < (me.options.numberOfFrames - 1) ? (me.frameIndex + 1) : 0;
-                me.render();
-                // this.positionY+=5;
-            }
-            if (me.isMoving) {
-                window.requestAnimationFrame(neverMind);
-            }
-        }
+        me.update();
     }
 
     moveRight() {
@@ -96,21 +90,8 @@ class Sprite {
         me.frameIndex = 0;
         me.isMoving = true;
 
-        neverMind();
+        me.update();
 
-        function neverMind() {
-            // console.log("I don't mind");
-            me.tick++;
-            if (me.tick > me.options.ticksPerFrame) {
-                me.tick = 0;
-                me.frameIndex = me.frameIndex < (me.options.numberOfFrames - 1) ? (me.frameIndex + 1) : 0;
-                me.render();
-                // this.positionY+=5;
-            }
-            if (me.isMoving) {
-                window.requestAnimationFrame(neverMind);
-            }
-        }
     }
 
     moveUp() {
@@ -120,21 +101,7 @@ class Sprite {
         me.frameIndex = 0;
         me.isMoving = true;
 
-        neverMind();
-
-        function neverMind() {
-            // console.log("I don't mind");
-            me.tick++;
-            if (me.tick > me.options.ticksPerFrame) {
-                me.tick = 0;
-                me.frameIndex = me.frameIndex < (me.options.numberOfFrames - 1) ? (me.frameIndex + 1) : 0;
-                me.render();
-                // this.positionY+=5;
-            }
-            if (me.isMoving) {
-                window.requestAnimationFrame(neverMind);
-            }
-        }
+        me.update();
     }
 
     stopMoving() {
