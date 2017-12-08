@@ -1,0 +1,28 @@
+{
+  "name": "my-mario",
+  "version": "1.0.0",
+  "description": "link to rawgit: https://rawgit.com/happyHooman/CanvasGame/master/index.html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/happyHooman/CanvasGame.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/happyHooman/CanvasGame/issues"
+  },
+  "homepage": "https://github.com/happyHooman/CanvasGame#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-css": "^0.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uglify-es": "^0.1.7"
+  },
+  "dependencies": {}
+}

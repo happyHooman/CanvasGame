@@ -16,7 +16,11 @@ class Sprite {
 
     render() {
         let me = this;
-        me.options.context.clearRect(me.positionX - me.stepLength, me.positionY - me.stepLength, me.options.width + me.stepLength * 2, me.options.height + me.stepLength * 2);
+        me.options.context.clearRect(
+            me.positionX - me.stepLength,
+            me.positionY - me.stepLength,
+            me.options.width + me.stepLength * 2,
+            me.options.height + me.stepLength * 2);
         // console.log(me.frameIndex, me.direction);
 
         me.options.context.drawImage(
@@ -58,56 +62,32 @@ class Sprite {
             window.requestAnimationFrame(function () {
                 me.update();
             });
+        } else {
+            window.requestAnimationFrame(function () {
+                me.tick = 0;
+                me.frameIndex = 0;
+                me.render();
+            })
         }
     }
 
-    moveDown() {
+    move(direction){
         let me = this;
-        console.log("moving Down");
-        me.direction = me.options.animations.down;
-        me.frameIndex = 0;
         me.isMoving = true;
-
-        me.update();
-
-    }
-
-
-    moveLeft() {
-        let me = this;
-        console.log("moving Left");
-        me.direction = me.options.animations.left;
         me.frameIndex = 0;
-        me.isMoving = true;
-
-        me.update();
-    }
-
-    moveRight() {
-        let me = this;
-        console.log("moving Right");
-        me.direction = me.options.animations.right;
-        me.frameIndex = 0;
-        me.isMoving = true;
-
-        me.update();
-
-    }
-
-    moveUp() {
-        let me = this;
-        console.log("moving Up");
-        me.direction = me.options.animations.up;
-        me.frameIndex = 0;
-        me.isMoving = true;
+        me.direction = me.options.animations[direction];
+        console.log('moving',direction);
 
         me.update();
     }
 
     stopMoving() {
-        this.isMoving = false;
-        this.frameIndex = 0;
-        this.render();
+        let me = this;
+        me.isMoving = false;
+        me.frameIndex = 0;
+        window.requestAnimationFrame(function () {
+            me.update();
+        });
     }
 
 }
