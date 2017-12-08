@@ -29,4 +29,4 @@ gulp.task("uglify", function () {
         .pipe(gulp.dest("app/"));
 });
 
-gulp.task('default', ['uglify']);
+gulp.task('default', ['scripts','uglify']);

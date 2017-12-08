@@ -55,5 +55,4 @@ class Player{
     stopMoving(){
         this.sprite.stopMoving();
     }
-
 }
