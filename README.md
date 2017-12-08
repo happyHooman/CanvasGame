@@ -1,5 +1,5 @@
 # CanvasGame
-[link to rawgit](https://rawgit.com/happyHooman/CanvasGame/master/index.html)
+[link to rawgit](https://rawgit.com/happyHooman/CanvasGame/master/app/index.html)
 
 ##Todo
 - [x] finish Player class
