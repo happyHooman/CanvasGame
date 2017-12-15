@@ -1,12 +1,11 @@
 class Player{
     constructor(name){
         this.name = name;
-        this.canvas = document.getElementById("playerCanvas");
         this.options = {
-            context: this.canvas.getContext("2d"),
+            canvas: document.getElementById("player1_layer"),
             imageSrc: "img/rpg.png",
             numberOfFrames: 4,
-            ticksPerFrame: 2,
+            ticksPerFrame: 3,
             width: 34,
             height: 52,
             animations: {
@@ -34,7 +33,7 @@ class Player{
     }
 
     move(e){
-        if (e.repeat || this.fired) {
+        if (this.fired) {
             e.preventDefault();
             return
         }
@@ -60,6 +59,7 @@ class Player{
                 this.sprite.move('down');
                 break;
             default:
+                console.log("only arrow keys work my friend");
             //do nothing
         }
     }

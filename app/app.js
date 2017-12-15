@@ -1,3 +1,20 @@
+class Background {
+    constructor() {
+        this.canvas = document.getElementById("background_layer");
+    }
+
+    load() {
+        console.log("background loaded");
+        let context = this.canvas.getContext('2d');
+        context.beginPath();
+        context.moveTo(200, 30);
+        context.lineTo(200, 300);
+        context.lineWidth = 10;
+        context.strokeStyle = 'blue';
+        context.lineCap = 'round';
+        context.stroke();
+    }
+}
 class Sprite {
     constructor(options) {
         this.options = options;
@@ -11,18 +28,20 @@ class Sprite {
         this.direction = this.options.animations.down;
         this.isMoving = false;
         this.stepLength = 10;
-        console.log(this.options.ticksPerFrame);
+        console.log(this.options.ticksPerFrame, this.stepLength);
     }
 
     render() {
-        let me = this;
-        me.options.context.clearRect(
+        let me = this,
+            context = me.options.canvas.getContext('2d');
+
+        context.clearRect(
             me.positionX - me.stepLength,
             me.positionY - me.stepLength,
             me.options.width + me.stepLength * 2,
             me.options.height + me.stepLength * 2);
 
-        me.options.context.drawImage(
+        context.drawImage(
             me.image,
             me.frameIndex * me.options.width,
             me.direction * me.options.height,
@@ -34,6 +53,7 @@ class Sprite {
             me.options.height
         );
         console.log(me.positionX, me.positionY);
+        console.log(background.canvas.getContext('2d').getImageData(me.positionX, me.positionY, 10, 10));
     }
 
     update() {
@@ -44,7 +64,8 @@ class Sprite {
             me.frameIndex = me.frameIndex < (me.options.numberOfFrames - 1) ? (me.frameIndex + 1) : 0;
             switch (true) {
                 case (me.direction === me.options.animations.down):
-                    me.positionY = me.positionY > 600 - me.options.height - me.stepLength ? me.positionY : me.positionY + me.stepLength;
+                    me.positionY = me.positionY > me.options.canvas.height - me.options.height - me.stepLength ?
+                        me.options.canvas.height - me.options.height : me.positionY + me.stepLength;
                     break;
                 case (me.direction === me.options.animations.up):
                     me.positionY = me.positionY < me.stepLength ? 0 : me.positionY - me.stepLength;
@@ -53,7 +74,8 @@ class Sprite {
                     me.positionX = me.positionX < me.stepLength ? 0 : me.positionX - me.stepLength;
                     break;
                 case (me.direction === me.options.animations.right):
-                    me.positionX = me.positionX > 600 - me.options.width - me.stepLength ? me.positionX : me.positionX + me.stepLength;
+                    me.positionX = me.positionX > me.options.canvas.width - me.options.width - me.stepLength ?
+                        me.options.canvas.width - me.options.width : me.positionX + me.stepLength;
                     break;
             }
             me.render();
@@ -93,12 +115,11 @@ class Sprite {
 class Player{
     constructor(name){
         this.name = name;
-        this.canvas = document.getElementById("playerCanvas");
         this.options = {
-            context: this.canvas.getContext("2d"),
+            canvas: document.getElementById("player1_layer"),
             imageSrc: "img/rpg.png",
             numberOfFrames: 4,
-            ticksPerFrame: 2,
+            ticksPerFrame: 3,
             width: 34,
             height: 52,
             animations: {
@@ -126,7 +147,7 @@ class Player{
     }
 
     move(e){
-        if (e.repeat || this.fired) {
+        if (this.fired) {
             e.preventDefault();
             return
         }
@@ -152,21 +173,20 @@ class Player{
                 this.sprite.move('down');
                 break;
             default:
+                console.log("only arrow keys work my friend");
             //do nothing
         }
     }
 
     stopMoving(e){
-        // console.log(e.keyCode);
         if (this.fired === e.keyCode){
             this.fired = false;
             this.sprite.stopMoving();
         }
     }
 }
-const playerCanvas = document.getElementById("playerCanvas");
-playerCanvas.width = 600;
-playerCanvas.height = 600;
+let background = new Background();
+background.load();
 
 let player = new Player("Valentin");
 

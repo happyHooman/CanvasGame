@@ -1,6 +1,5 @@
-const playerCanvas = document.getElementById("playerCanvas");
-playerCanvas.width = 600;
-playerCanvas.height = 600;
+let background = new Background();
+background.load();
 
 let player = new Player("Valentin");
 

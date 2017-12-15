@@ -5,7 +5,7 @@ let cssMin = require('gulp-css');
 let rename = require('gulp-rename');
 
 
-gulp.task('css',function () {
+gulp.task('css', function () {
     gulp.src('app/css/style.css')
         .pipe(concat('app.css'))
         .pipe(cssMin())
@@ -14,6 +14,7 @@ gulp.task('css',function () {
 
 gulp.task('scripts', function () {
     return gulp.src([
+        'app/js/Background.js',
         'app/js/Sprite.js',
         'app/js/Player.js',
         'app/js/script.js'
@@ -29,4 +30,4 @@ gulp.task("uglify", function () {
         .pipe(gulp.dest("app/"));
 });
 
-gulp.task('default', ['scripts','uglify']);
+gulp.task('default', ['scripts', 'uglify']);
