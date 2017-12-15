@@ -1,9 +1,10 @@
 # CanvasGame
-[link to rawgit](https://rawgit.com/happyHooman/CanvasGame/master/app/index.html)
+[Preview on rawgit](https://rawgit.com/happyHooman/CanvasGame/master/app/index.html)
 
 ## Todo
+- [x] separate code in modules and use gulp to load and minimize
 - [x] finish Player class
-- [ ] remove issues when multiple arrows are fired at the same time and then one of them is released
+- [x] remove issues when multiple arrows are fired at the same time and then one of them is released
 - [ ] forbid this tiny creature go outside the bounds of the canvass
 
 - [ ] make it throw stones (like the cave man, just wandering where that cave man got clothes from :confused: )(sorry but no animation for that yet)

@@ -17,34 +17,46 @@ class Player{
             }
         };
         this.sprite = new Sprite(this.options);
-        this.sprite.render();
+        this.fired = false;
     }
 
     initialize(){
+        let me = this;
+        window.addEventListener("load", function () {
+            me.sprite.render();
+        });
         document.onkeydown = function (e) {
-            this.move(e);
-        }
-        document.onkeyup = function () {
-            this.stopMoving();
-        }
+            me.move(e);
+        };
+        document.onkeyup = function (e) {
+            me.stopMoving(e);
+        };
     }
 
     move(e){
-        e.preventDefault();
-        if (e.repeat) {
+        if (e.repeat || this.fired) {
+            e.preventDefault();
             return
         }
+
+        this.fired = e.keyCode;
+        // console.log(this.fired);
+
         switch (e.keyCode) {
             case 37:
+                e.preventDefault();
                 this.sprite.move('left');
                 break;
             case 38:
+                e.preventDefault();
                 this.sprite.move('up');
                 break;
             case 39:
+                e.preventDefault();
                 this.sprite.move('right');
                 break;
             case 40:
+                e.preventDefault();
                 this.sprite.move('down');
                 break;
             default:
@@ -52,7 +64,11 @@ class Player{
         }
     }
 
-    stopMoving(){
-        this.sprite.stopMoving();
+    stopMoving(e){
+        // console.log(e.keyCode);
+        if (this.fired === e.keyCode){
+            this.fired = false;
+            this.sprite.stopMoving();
+        }
     }
 }
