@@ -6,7 +6,7 @@ class Player{
             context: this.canvas.getContext("2d"),
             imageSrc: "img/rpg.png",
             numberOfFrames: 4,
-            ticksPerFrame: 3,
+            ticksPerFrame: 2,
             width: 34,
             height: 52,
             animations: {
@@ -65,7 +65,6 @@ class Player{
     }
 
     stopMoving(e){
-        // console.log(e.keyCode);
         if (this.fired === e.keyCode){
             this.fired = false;
             this.sprite.stopMoving();

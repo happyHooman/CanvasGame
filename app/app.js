@@ -10,7 +10,7 @@ class Sprite {
         this.image.src = this.options.imageSrc;
         this.direction = this.options.animations.down;
         this.isMoving = false;
-        this.stepLength = 5;
+        this.stepLength = 10;
         console.log(this.options.ticksPerFrame);
     }
 
@@ -21,7 +21,6 @@ class Sprite {
             me.positionY - me.stepLength,
             me.options.width + me.stepLength * 2,
             me.options.height + me.stepLength * 2);
-        // console.log(me.frameIndex, me.direction);
 
         me.options.context.drawImage(
             me.image,
@@ -34,6 +33,7 @@ class Sprite {
             me.options.width,
             me.options.height
         );
+        console.log(me.positionX, me.positionY);
     }
 
     update() {
@@ -44,16 +44,16 @@ class Sprite {
             me.frameIndex = me.frameIndex < (me.options.numberOfFrames - 1) ? (me.frameIndex + 1) : 0;
             switch (true) {
                 case (me.direction === me.options.animations.down):
-                    me.positionY += me.stepLength;
+                    me.positionY = me.positionY > 600 - me.options.height - me.stepLength ? me.positionY : me.positionY + me.stepLength;
                     break;
                 case (me.direction === me.options.animations.up):
-                    me.positionY -= me.stepLength;
+                    me.positionY = me.positionY < me.stepLength ? 0 : me.positionY - me.stepLength;
                     break;
                 case (me.direction === me.options.animations.left):
-                    me.positionX -= me.stepLength;
+                    me.positionX = me.positionX < me.stepLength ? 0 : me.positionX - me.stepLength;
                     break;
                 case (me.direction === me.options.animations.right):
-                    me.positionX += me.stepLength;
+                    me.positionX = me.positionX > 600 - me.options.width - me.stepLength ? me.positionX : me.positionX + me.stepLength;
                     break;
             }
             me.render();
@@ -71,12 +71,12 @@ class Sprite {
         }
     }
 
-    move(direction){
+    move(direction) {
         let me = this;
         me.isMoving = true;
         me.frameIndex = 0;
         me.direction = me.options.animations[direction];
-        console.log('moving',direction);
+        console.log('moving', direction);
 
         me.update();
     }
@@ -89,7 +89,6 @@ class Sprite {
             me.update();
         });
     }
-
 }
 class Player{
     constructor(name){
@@ -99,7 +98,7 @@ class Player{
             context: this.canvas.getContext("2d"),
             imageSrc: "img/rpg.png",
             numberOfFrames: 4,
-            ticksPerFrame: 3,
+            ticksPerFrame: 2,
             width: 34,
             height: 52,
             animations: {
@@ -165,7 +164,6 @@ class Player{
         }
     }
 }
-
 const playerCanvas = document.getElementById("playerCanvas");
 playerCanvas.width = 600;
 playerCanvas.height = 600;
