@@ -1,5 +1,5 @@
-class Player{
-    constructor(name){
+class Player {
+    constructor(name) {
         this.name = name;
         this.options = {
             canvas: document.getElementById("player1_layer"),
@@ -19,7 +19,7 @@ class Player{
         this.fired = false;
     }
 
-    initialize(){
+    initialize() {
         let me = this;
         window.addEventListener("load", function () {
             me.sprite.render();
@@ -32,8 +32,8 @@ class Player{
         };
     }
 
-    move(e){
-        if (this.fired) {
+    move(e) {
+        if (e.repeat || this.fired) {
             e.preventDefault();
             return
         }
@@ -64,8 +64,8 @@ class Player{
         }
     }
 
-    stopMoving(e){
-        if (this.fired === e.keyCode){
+    stopMoving(e) {
+        if (this.fired === e.keyCode) {
             this.fired = false;
             this.sprite.stopMoving();
         }

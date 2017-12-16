@@ -35,8 +35,13 @@ class Sprite {
             me.options.width,
             me.options.height
         );
+
+        context.beginPath();
+        context.strokeStyle = 'red';
+        context.arc(me.positionX + me.options.width / 2, me.positionY + me.options.height - me.options.width / 2, me.options.width / 2 - 1, 0, 2 * Math.PI);
+        context.stroke();
+
         console.log(me.positionX, me.positionY);
-        console.log(background.canvas.getContext('2d').getImageData(me.positionX, me.positionY, 10, 10));
     }
 
     update() {
@@ -54,11 +59,16 @@ class Sprite {
                     me.positionY = me.positionY < me.stepLength ? 0 : me.positionY - me.stepLength;
                     break;
                 case (me.direction === me.options.animations.left):
-                    me.positionX = me.positionX < me.stepLength ? 0 : me.positionX - me.stepLength;
+                    if(me.canMove()){
+                        me.positionX = me.positionX < me.stepLength ? 0 : me.positionX - me.stepLength;
+                    }
                     break;
                 case (me.direction === me.options.animations.right):
-                    me.positionX = me.positionX > me.options.canvas.width - me.options.width - me.stepLength ?
-                        me.options.canvas.width - me.options.width : me.positionX + me.stepLength;
+                    if (me.canMove()) {
+                        me.positionX = me.positionX > me.options.canvas.width - me.options.width - me.stepLength ?
+                            me.options.canvas.width - me.options.width : me.positionX + me.stepLength;
+                    }
+
                     break;
             }
             me.render();
@@ -74,6 +84,33 @@ class Sprite {
                 me.render();
             })
         }
+    }
+
+    canMove() {
+        let me = this,
+            width = me.options.width,
+            height = me.options.height,
+            step = me.stepLength,
+            x = me.positionX,
+            y = me.positionY + height - width / 2,
+            can = false;
+        switch (true) {
+            case (me.direction === me.options.animations.right):
+                can = background.getCollisionAtPoint(x + width + step, y);
+                break;
+            case (me.direction === me.options.animations.up):
+                can = background.getCollisionAtPoint();
+                break;
+            case (me.direction === me.options.animations.left):
+                can = background.getCollisionAtPoint(x - step, y);
+                break;
+            case (me.direction === me.options.animations.right):
+                can = background.getCollisionAtPoint();
+                break;
+            default:
+            //do nothing
+        }
+        return !can;
     }
 
     move(direction) {
