@@ -6,7 +6,9 @@
 - [x] finish Player class
 - [x] remove issues when multiple arrows are fired at the same time and then one of them is released
 - [x] forbid this tiny creature go outside the bounds of the canvass
-- [ ] add barriers through witch the character could not pass
+- [x] add barriers through witch the character could not pass
+
+- [ ] at each iteration calculate the distance to the closest obstacle in every direction and store the data
 
 - [ ] make it throw stones (like the cave man, just wandering where that cave man got clothes from :confused: )(sorry but no animation for that yet)
 - [ ] make the character drop bombs like bomberman :boom:

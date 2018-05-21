@@ -1,6 +1,5 @@
 let background = new Background();
+    player = new Player('Valentin');
+
 background.load();
-
-let player = new Player("Valentin");
-
 player.initialize();

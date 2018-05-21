@@ -1,7 +1,8 @@
 class Player {
     constructor(name) {
-        this.name = name;
-        this.options = {
+        let me = this;
+        me.name = name;
+        me.options = {
             canvas: document.getElementById("player1_layer"),
             imageSrc: "img/rpg.png",
             numberOfFrames: 4,
@@ -15,8 +16,8 @@ class Player {
                 up: 3
             }
         };
-        this.sprite = new Sprite(this.options);
-        this.fired = false;
+        me.sprite = new Sprite(me.options);
+        me.fired = false;
     }
 
     initialize() {

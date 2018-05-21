@@ -7,9 +7,9 @@ let rename = require('gulp-rename');
 
 gulp.task('css', function () {
     gulp.src('app/css/style.css')
-        .pipe(concat('app.css'))
+        .pipe(concat('../release/app.css'))
         .pipe(cssMin())
-        .pipe(gulp.dest('app'));
+        .pipe(gulp.dest('release'));
 });
 
 gulp.task('scripts', function () {
@@ -18,16 +18,16 @@ gulp.task('scripts', function () {
         'app/js/Sprite.js',
         'app/js/Player.js',
         'app/js/script.js'
-    ])
-        .pipe(concat('app.js'))
-        .pipe(gulp.dest('app/'));
+        ])
+        .pipe(concat('../release/app.js'))
+        .pipe(gulp.dest('release'));
 });
 
 gulp.task("uglify", function () {
-    return gulp.src("app/app.js")
+    return gulp.src("release/app.js")
         .pipe(rename("app.min.js"))
         .pipe(uglify(/* options */))
-        .pipe(gulp.dest("app/"));
+        .pipe(gulp.dest("release"));
 });
 
 gulp.task('default', ['scripts', 'uglify']);

@@ -1,17 +1,18 @@
 class Sprite {
     constructor(options) {
-        this.options = options;
-        this.context = options.context;
-        this.tick = 0;
-        this.frameIndex = 0;
-        this.positionX = 0;
-        this.positionY = 0;
-        this.image = new Image();
-        this.image.src = this.options.imageSrc;
-        this.direction = this.options.animations.down;
-        this.isMoving = false;
-        this.stepLength = 10;
-        console.log(this.options.ticksPerFrame, this.stepLength);
+        let me = this;
+        me.options = options;
+        me.context = options.context;
+        me.tick = 0;
+        me.frameIndex = 0;
+        me.positionX = 0;
+        me.positionY = 0;
+        me.image = new Image();
+        me.image.src = me.options.imageSrc;
+        me.direction = me.options.animations.down;
+        me.isMoving = false;
+        me.stepLength = 10;
+        // console.log(me.options.ticksPerFrame, me.stepLength);
     }
 
     render() {
@@ -36,6 +37,7 @@ class Sprite {
             me.options.height
         );
 
+        //create the guiding circle around the sprite
         context.beginPath();
         context.strokeStyle = 'red';
         context.arc(me.positionX + me.options.width / 2, me.positionY + me.options.height - me.options.width / 2, me.options.width / 2 - 1, 0, 2 * Math.PI);

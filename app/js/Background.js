@@ -4,6 +4,11 @@ class Background {
     }
 
     load() {
+        this.createObstacle();
+        console.log("background loaded");
+    }
+
+    createObstacle(){
         let context = this.canvas.getContext('2d');
         context.beginPath();
         context.moveTo(200, 30);
@@ -12,7 +17,6 @@ class Background {
         context.strokeStyle = 'blue';
         context.lineCap = 'round';
         context.stroke();
-        console.log("background loaded");
     }
 
     getCollisionAtPoint(x,y){
