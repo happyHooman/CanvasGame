@@ -338,9 +338,11 @@
       window.addEventListener(Runner.events.BLUR, this.onVisibilityChange.bind(this));
       window.addEventListener(Runner.events.FOCUS, this.onVisibilityChange.bind(this))
     },
+
     clearCanvas: function () {
       this.canvasCtx.clearRect(0, 0, this.dimensions.WIDTH, this.dimensions.HEIGHT)
     },
+
     update: function () {
       this.drawPending = false;
       var now = getTimeStamp();
@@ -673,6 +675,7 @@
     this.restartImgPos = restartImgPos;
     this.draw()
   };
+
   GameOverPanel.dimensions = {
     TEXT_X: 0,
     TEXT_Y: 13,
@@ -681,6 +684,7 @@
     RESTART_WIDTH: 36,
     RESTART_HEIGHT: 32
   };
+
   GameOverPanel.prototype = {
     updateDimensions: function (width, opt_height) {
       this.canvasDimensions.WIDTH = width;
@@ -795,8 +799,11 @@
     this.timer = 0;
     this.init(speed)
   };
+
   Obstacle.MAX_GAP_COEFFICIENT = 1.5;
-  Obstacle.MAX_OBSTACLE_LENGTH = 3, Obstacle.prototype = {
+  Obstacle.MAX_OBSTACLE_LENGTH = 3;
+
+  Obstacle.prototype = {
     init: function (speed) {
       this.cloneCollisionBoxes();
       if (this.size > 1 && this.typeConfig.multipleSpeed > speed) {
@@ -939,10 +946,12 @@
     WIDTH: 44,
     WIDTH_DUCK: 59
   };
+
   Trex.collisionBoxes = {
     DUCKING: [new CollisionBox(1, 18, 55, 25)],
     RUNNING: [new CollisionBox(22, 0, 17, 16), new CollisionBox(1, 18, 30, 9), new CollisionBox(10, 35, 14, 8), new CollisionBox(1, 24, 29, 5), new CollisionBox(5, 30, 21, 4), new CollisionBox(9, 34, 15, 4)]
   };
+
   Trex.status = {
     CRASHED: 'CRASHED',
     DUCKING: 'DUCKING',
